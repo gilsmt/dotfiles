@@ -17,4 +17,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Aliases
 alias sys='fastfetch'
-alias ncu="bunx npm-check-updates -i --format group"
+alias ncu="bunx npm-check-updates@latest -i --format group"

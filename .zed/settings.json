@@ -1,0 +1,264 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "edit_predictions": {
+    "mode": "eager"
+  },
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "git_panel": {
+    "sort_by": "path",
+    "group_by": "staging",
+  },
+  "diff_view_style": "split",
+  "debugger": {
+    "button": false,
+  },
+  "context_server_timeout": 30,
+  "search": {
+    "button": false,
+  },
+  "lsp_results_location": "multi_buffer",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 3000,
+    },
+  },
+  "buffer_font_size": 13.0,
+  "buffer_line_height": {
+    "custom": 1.42857,
+  },
+  "colorize_brackets": true,
+  "confirm_quit": true,
+  "cursor_blink": true,
+  "drag_and_drop_selection": {
+    "enabled": false,
+  },
+  "ensure_final_newline_on_save": true,
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/node_modules/**",
+    "**/build/**",
+    "**/dist/**",
+    "**/.next/**",
+    "**/env/**",
+    "**/venv/**",
+    "env-*",
+    "**/target/**",
+    "**/debug/**",
+    ".build/**",
+    "out/**",
+  ],
+  "format_on_save": "on",
+  "global_lsp_settings": {
+    "semantic_token_rules": [
+      {
+        "token_modifiers": ["mutable"],
+        "font_style": "italic",
+      },
+    ],
+  },
+  "gutter": {
+    "line_numbers": true,
+  },
+  "linked_edits": true,
+  "minimap": {
+    "show": "auto",
+    "thumb": "hover",
+  },
+  "preview_tabs": {
+    "enable_preview_from_file_finder": false,
+    "enable_preview_from_multibuffer": true,
+    "enabled": true,
+  },
+  "remove_trailing_whitespace_on_save": true,
+  "restore_on_startup": "last_session",
+  "selection_highlight": true,
+  "semantic_tokens": "combined",
+  "show_completions_on_input": true,
+  "tab_bar": {
+    "show": false,
+  },
+  "telemetry": {
+    "anthropic_retention": true,
+    "diagnostics": false,
+  },
+  "lsp": {
+    "vtsls": {
+      "initialization_options": {
+        "typescript": {
+          "tsdk": "node_modules/typescript/lib",
+        },
+        "vtsls": {
+          "autoUseWorkspaceTsdk": true,
+        },
+      },
+      "settings": {
+        "javascript": {
+          "inlayHints": {
+            "parameterNames": {
+              "enabled": "all",
+            },
+            "parameterTypes": {
+              "enabled": true,
+            },
+            "functionLikeReturnTypes": {
+              "enabled": true,
+            },
+            "propertyDeclarationTypes": {
+              "enabled": true,
+            },
+          },
+          "preferences": {
+            "useAliasesForRenames": false,
+            "importModuleSpecifier": "project-relative",
+          },
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+        "typescript": {
+          "disableAutomaticTypeAcquisition": true,
+          "format": {
+            "semicolons": "insert",
+          },
+          "inlayHints": {
+            "functionLikeReturnTypes": {
+              "enabled": true,
+            },
+            "enumMemberValues": {
+              "enabled": true,
+            },
+          },
+          "preferences": {
+            "useAliasesForRenames": false,
+            "importModuleSpecifier": "project-relative",
+          },
+          "tsserver": {
+            "maxTsServerMemory": 2048,
+          },
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+      },
+    },
+  },
+  "agent_buffer_font_size": 14.0,
+  "agent_ui_font_size": 16.0,
+  "terminal": {
+    "font_size": 15.0,
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "left",
+  },
+  "inlay_hints": {
+    "edit_debounce_ms": 1000,
+    "show_other_hints": false,
+    "show_parameter_hints": true,
+    "show_type_hints": false,
+    "show_value_hints": true,
+    "show_background": false,
+    "enabled": true,
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Material Icon Theme",
+  },
+  "agent": {
+    "show_turn_stats": true,
+    "thinking_display": "always_collapsed",
+    "single_file_review": true,
+    "expand_edit_card": false,
+    "expand_terminal_card": false,
+    "enable_feedback": true,
+    "sandbox_permissions": {
+      "allow_unsandboxed": true,
+      "write_paths": [
+        {
+          "requested": "/Users/gilbert/.config/zed/settings.json",
+          "resolved": "/Users/gilbert/.config/zed/settings.json",
+        },
+      ],
+      "allow_all_hosts": true,
+      "network_hosts": [],
+    },
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {
+        "mcp:mcp-server-context7:query-docs": {
+          "default": "allow",
+        },
+        "mcp:mcp-server-context7:resolve-library-id": {
+          "default": "allow",
+        },
+      },
+    },
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "gpt-6.1-sol",
+      "enable_thinking": true,
+      "effort": "high",
+    },
+    "auto_compact": {
+      "threshold": "90%",
+    },
+    "favorite_models": [],
+    "play_sound_when_agent_done": "always",
+    "model_parameters": [],
+  },
+  "agent_servers": {},
+  "context_servers": {
+    "mcp-server-context7": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "context7_api_key": "",
+      },
+    },
+  },
+  "base_keymap": "Zed",
+  "ui_font_size": 16.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Tokyo Night",
+  },
+  "languages": {
+    "TypeScript": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "...",
+      ],
+    },
+    "TSX": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+        "...",
+      ],
+    },
+  },
+  "code_lens": "menu",
+}
