@@ -39,6 +39,7 @@
     "editor.quickSuggestionsDelay": 0,
     "editor.renderControlCharacters": false,
     "editor.scrollbar.verticalScrollbarSize": 4,
+    "terminal.integrated.rightClickBehavior": "copyPaste",
     "explorer.confirmDelete": false,
     "errorLens.enabled": true,
     "errorLens.enabledDiagnosticLevels": ["error", "info", "hint", "warning"],
@@ -204,5 +205,21 @@
         "*.svg": "default"
     },
     "window.autoDetectColorScheme": false,
-    "workbench.panel.defaultLocation": "right"
+    "workbench.panel.defaultLocation": "right",
+    "gitlens.views.commitDetails.files.compact": true,
+    "gitlens.views.commitDetails.files.icon": "type",
+    "gitlens.views.commitDetails.files.layout": "list",
+    "gitlens.views.commitDetails.files.threshold": 5,
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "yaml.disableSchemaDetection": [
+        "**/.github/workflows/*.yml",
+        "**/.github/workflows/*.yaml",
+        "**/.gitea/workflows/*.yml",
+        "**/.gitea/workflows/*.yaml",
+        "**/.forgejo/workflows/*.yml",
+        "**/.forgejo/workflows/*.yaml"
+    ],
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3"
 }
