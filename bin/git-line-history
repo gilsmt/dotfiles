@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# Show the git commit history for the current line or selection in Zed.
+#
+# Reads Zed task environment variables (ZED_ROW, ZED_FILE, ZED_WORKTREE_ROOT,
+# ZED_RELATIVE_FILE, ZED_SELECTED_TEXT) and writes `git log -L` output into a
+# temporary .diff file opened in Zed.
+#
+# Adapted from https://github.com/zed-industries/zed/discussions/54672
+
+set -eu
+
+usage_error() {
+	echo "git-line-history: $1" >&2
+	exit 1
+}
+
+file="${ZED_FILE:-}"
+[ -n "$file" ] || usage_error "ZED_FILE is not set (run from a Zed task)"
+row="${ZED_ROW:-}"
+[ -n "$row" ] || usage_error "ZED_ROW is not set (run from a Zed task)"
+worktree="${ZED_WORKTREE_ROOT:-}"
+[ -n "$worktree" ] || usage_error "ZED_WORKTREE_ROOT is not set (file is not in a project)"
+relative_file="${ZED_RELATIVE_FILE:-}"
+[ -n "$relative_file" ] || usage_error "ZED_RELATIVE_FILE is not set"
+
+# ZED_ROW is 1-indexed, matching `git log -L` line numbers.
+selection="${ZED_SELECTED_TEXT:-}"
+if [ -n "$selection" ]; then
+	line_count=$(printf '%s\n' "$selection" | grep -c '' || true)
+	start_line=$row
+	end_line=$((row + line_count - 1))
+else
+	start_line=$row
+	end_line=$row
+fi
+
+cd "$worktree" || usage_error "cannot cd into $worktree"
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 || usage_error "not inside a git repository"
+
+tmpdir="${TMPDIR:-/tmp}"
+raw_log=$(mktemp "$tmpdir/git-line-history.XXXXXX")
+diff_file="$raw_log.diff"
+mv "$raw_log" "$diff_file"
+
+# Remove stale outputs from previous runs
+find "$tmpdir" -maxdepth 1 -name 'git-line-history.*.diff' -mtime +1 -delete 2>/dev/null || true
+
+git log \
+	--no-ext-diff \
+	--date=format:'%Y-%m-%d %H:%M:%S' \
+	-L "$start_line,$end_line:$relative_file" \
+	>"$raw_log" 2>/dev/null || usage_error "git log failed for $start_line-$end_line of $relative_file"
+
+# Filter diff metadata and add separators between commits
+awk '
+BEGIN { in_commit = 0; has_content = 0 }
+/^commit / {
+	if (in_commit && has_content) print "\n--------------------------------------------------\n"
+	in_commit = 1
+	has_content = 0
+	print
+	next
+}
+/^(diff --git|index |--- a\/|\+\+\+ b\/|@@ )/ { next }
+{
+	if (in_commit) print
+	has_content = 1
+}
+' "$raw_log" >"$diff_file"
+rm -f "$raw_log"
+
+if [ ! -s "$diff_file" ]; then
+	echo "git-line-history: no matching commit history found"
+	rm -f "$diff_file"
+	exit 0
+fi
+
+if command -v zed >/dev/null 2>&1; then
+	zed "$diff_file"
+else
+	open -a Zed "$diff_file"
+fi
