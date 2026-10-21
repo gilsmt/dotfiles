@@ -1,0 +1,44 @@
+# Secrets — never commit these.
+# This repo is PUBLIC: https://github.com/gilsmt/dotfiles
+#
+# Auth tokens and credentials belong in your local machine's config
+# (~/.npmrc, ~/.config/gh/hosts.yml, ~/.config/opencode/service.json, ...)
+# never in a tracked file. Restore them by logging in, not by cloning.
+#
+# NOTE: gitignore has no trailing comments — each pattern must be on its
+# own line, or the whole line (comment included) becomes the pattern.
+
+# Local-only overrides / secret material
+*.local
+*.local.*
+secrets/
+**/secrets/
+
+# npm auth token — `npm login` writes it to ~/.npmrc, keep it out of git
+.npmrc.local
+**/.npmrc.local
+
+# gh CLI OAuth token
+**/hosts.yml
+
+# agent CLI credential stores
+**/auth.json
+**/credentials.json
+
+# opencode service password
+**/service.json
+
+# API keys and private key material
+**/*api-key*
+**/*.pem
+id_rsa
+id_ed25519
+
+# Runtime state
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
